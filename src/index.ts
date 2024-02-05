@@ -31,7 +31,7 @@ mongoose
   .connect(
     // `mongodb+srv://${dbUser}:${dbPass}@cluster0.wrwrg0v.mongodb.net/?retryWrites=true&w=majority`
     // `mongodb+srv://${dbUser}:${dbPass}@cluster0.wrwrg0v.mongodb.net/`
-    `mongodb+srv://eduardollovo:KWXTIyiv0t5eGaW3@inphantilmoveis.asqijf5.mongodb.net/`
+    `mongodb+srv://${dbUser}:${dbPass}@inphantilmoveis.asqijf5.mongodb.net/`
   )
 
   .then(() => {
