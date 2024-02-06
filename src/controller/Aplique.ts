@@ -13,8 +13,13 @@ const getAllApliques = async (req: Request, res: Response): Promise<void> => {
 
 const createAplique = async (req: Request, res: Response): Promise<void> => {
   try {
-    if (!req.body.number) {
-      res.status(400).send("Adicione o número do aplique");
+    if (
+      !req.body.codigo ||
+      !req.body.img ||
+      !req.body.quantidade ||
+      !req.body.estoque
+    ) {
+      res.status(400).send("Preencha todos os campos");
     } else {
       await Aplique.create(req.body);
       res.status(200).send("Aplique adicionado com sucesso");

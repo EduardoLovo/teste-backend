@@ -2,14 +2,14 @@
 import mongoose, { Document, Schema } from "mongoose";
 
 interface IAplique extends Document {
-  number: string;
+  codigo: string;
   img: string;
   quantidade: number;
   estoque: boolean;
 }
 
 const ApliqueSchema = new Schema<IAplique>({
-  number: String,
+  codigo: String,
   img: String,
   quantidade: Number,
   estoque: Boolean,

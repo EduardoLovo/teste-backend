@@ -5,6 +5,8 @@ if (process.env.NODE_ENV !== "production") {
 import express from "express";
 import mongoose from "mongoose";
 import apliqueRouter from "./routes/aplique.routes";
+import lencolProntoEntregaRouter from "./routes/lencolProntoEntrega.routes";
+import materialRouter from "./routes/material.routes";
 
 // import cors from "cors";
 
@@ -14,14 +16,12 @@ const port = 3000;
 app.use(express.json());
 
 app.use("/apliques", apliqueRouter);
+app.use("/lencois-pronto-entrega", lencolProntoEntregaRouter);
+app.use("/materiais", materialRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, TypeScript + Express!");
 });
-
-// app.listen(port, () => {
-//   console.log(`Servidor rodando em http://localhost:${port}`);
-// });
 
 const dbUser = process.env.DB_USER;
 const dbPass = process.env.DB_PASS;
