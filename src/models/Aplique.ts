@@ -6,6 +6,7 @@ interface IAplique extends Document {
   img: string;
   quantidade: number;
   estoque: boolean;
+  cabana: boolean;
 }
 
 const ApliqueSchema = new Schema<IAplique>({
@@ -13,6 +14,7 @@ const ApliqueSchema = new Schema<IAplique>({
   img: String,
   quantidade: Number,
   estoque: Boolean,
+  cabana: Boolean,
 });
 
 const Aplique = mongoose.model<IAplique>("Aplique", ApliqueSchema);

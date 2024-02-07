@@ -21,15 +21,22 @@ const createLencolProntoEntrega = async (
   try {
     if (
       !req.body.codigo ||
-      !req.body.img ||
       !req.body.quantidade ||
       !req.body.cor ||
       !req.body.tamanho ||
       !req.body.estoque
     ) {
-      res.status(400).send("Adicione o número do lençol");
-    } else {
-      await LencolProntoEntrega.create(req.body);
+      const { codigo, quantidade, cor, tamanho, estoque } = req.body;
+
+      // Check if an image file is uploaded
+      let img = "";
+      if (req.file) {
+        // Convert the image buffer to a base64 string or save it to your preferred storage (e.g., AWS S3)
+        img = req.file.buffer.toString("base64");
+      }
+
+      // Create the Aplique with the image data
+      await LencolProntoEntrega.create({ codigo, img, cor, estoque });
       res.status(200).send("Lençol adicionado com sucesso");
     }
   } catch (err) {

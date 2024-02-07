@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import apliqueRouter from "./routes/aplique.routes";
 import lencolProntoEntregaRouter from "./routes/lencolProntoEntrega.routes";
 import materialRouter from "./routes/material.routes";
+import tecidoParaLencolRouter from "./routes/tecidoParaLencol.routes";
 
 // import cors from "cors";
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/apliques", apliqueRouter);
 app.use("/lencois-pronto-entrega", lencolProntoEntregaRouter);
 app.use("/materiais", materialRouter);
+app.use("/tecidos-para-lencol", tecidoParaLencolRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, TypeScript + Express!");
@@ -29,8 +31,6 @@ const dbPass = process.env.DB_PASS;
 mongoose
   .set("strictQuery", false)
   .connect(
-    // `mongodb+srv://${dbUser}:${dbPass}@cluster0.wrwrg0v.mongodb.net/?retryWrites=true&w=majority`
-    // `mongodb+srv://${dbUser}:${dbPass}@cluster0.wrwrg0v.mongodb.net/`
     `mongodb+srv://${dbUser}:${dbPass}@inphantilmoveis.asqijf5.mongodb.net/`
   )
 

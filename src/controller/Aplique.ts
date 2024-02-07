@@ -15,13 +15,24 @@ const createAplique = async (req: Request, res: Response): Promise<void> => {
   try {
     if (
       !req.body.codigo ||
-      !req.body.img ||
       !req.body.quantidade ||
-      !req.body.estoque
+      !req.body.estoque ||
+      !req.body.cabana
     ) {
       res.status(400).send("Preencha todos os campos");
     } else {
-      await Aplique.create(req.body);
+      const { codigo, quantidade, estoque, cabana } = req.body;
+
+      // Check if an image file is uploaded
+      let img = "";
+      if (req.file) {
+        // Convert the image buffer to a base64 string or save it to your preferred storage (e.g., AWS S3)
+        img = req.file.buffer.toString("base64");
+      }
+
+      // Create the Aplique with the image data
+      await Aplique.create({ codigo, img, quantidade, estoque, cabana });
+
       res.status(200).send("Aplique adicionado com sucesso");
     }
   } catch (err) {
