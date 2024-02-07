@@ -20,6 +20,8 @@ const createTecidoParaLencol = async (
 ): Promise<void> => {
   try {
     if (!req.body.codigo || !req.body.cor || !req.body.estoque) {
+      res.status(400).send("Preencha todos os campos");
+    } else {
       const { codigo, cor, estoque } = req.body;
 
       // Check if an image file is uploaded

@@ -2,14 +2,15 @@
 
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import { UserModel, IUser } from "../models/Usuario";
+import Usuario from "../models/Usuario";
+import { IUsuario } from "../models/Usuario";
 
-export const login = async (req: Request, res: Response) => {
-  const { username, password } = req.body;
+const login = async (req: Request, res: Response) => {
+  const { usuario, senha } = req.body;
 
   try {
     // Verifica se o usuário existe no banco de dados
-    const user: IUser | null = await UserModel.findOne({ username });
+    const user: IUsuario | null = await Usuario.findOne({ usuario });
 
     if (!user) {
       return res
@@ -18,10 +19,7 @@ export const login = async (req: Request, res: Response) => {
     }
 
     // Compara a senha fornecida com a senha hash armazenada no banco de dados
-    const isPasswordValid: boolean = await bcrypt.compare(
-      password,
-      user.password
-    );
+    const isPasswordValid: boolean = await bcrypt.compare(senha, user.senha);
 
     if (!isPasswordValid) {
       return res
@@ -37,3 +35,5 @@ export const login = async (req: Request, res: Response) => {
     res.status(500).json({ msg: "Erro no servidor" });
   }
 };
+
+export { login };

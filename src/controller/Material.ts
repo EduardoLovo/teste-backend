@@ -14,6 +14,8 @@ const getAllMaterial = async (req: Request, res: Response): Promise<void> => {
 const createMaterial = async (req: Request, res: Response): Promise<void> => {
   try {
     if (!req.body.codigo || !req.body.cor || !req.body.estoque) {
+      res.status(400).send("Preencha todos os campos");
+    } else {
       const { codigo, cor, estoque } = req.body;
 
       // Check if an image file is uploaded

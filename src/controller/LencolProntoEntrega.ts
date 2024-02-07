@@ -26,6 +26,8 @@ const createLencolProntoEntrega = async (
       !req.body.tamanho ||
       !req.body.estoque
     ) {
+      res.status(400).send("Preencha todos os campos");
+    } else {
       const { codigo, quantidade, cor, tamanho, estoque } = req.body;
 
       // Check if an image file is uploaded

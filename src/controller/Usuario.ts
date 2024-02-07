@@ -3,8 +3,8 @@ import Usuario from "../models/Usuario";
 
 const getAllUsuario = async (req: Request, res: Response): Promise<void> => {
   try {
-    const usuario = await Usuario.find({});
-    res.send(usuario);
+    const usuarios = await Usuario.find({});
+    res.send(usuarios);
   } catch (err) {
     console.error(err);
     res.status(500).send("Erro interno do servidor");
@@ -21,7 +21,6 @@ const createUsuario = async (req: Request, res: Response): Promise<void> => {
     }
   } catch (err) {
     console.error(err);
-    res.status(500).send("Erro interno do servidor");
   }
 };
 
