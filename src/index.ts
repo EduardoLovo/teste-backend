@@ -8,7 +8,6 @@ import apliqueRouter from "./routes/aplique.routes";
 import lencolProntoEntregaRouter from "./routes/lencolProntoEntrega.routes";
 import materialRouter from "./routes/material.routes";
 import tecidoParaLencolRouter from "./routes/tecidoParaLencol.routes";
-import usuarioRouter from "./routes/usuario.routes";
 import { register, login } from "./controller/authController";
 
 // import login from "./routes/login.routes";
@@ -25,13 +24,11 @@ app.use("/apliques", apliqueRouter);
 app.use("/lencois-pronto-entrega", lencolProntoEntregaRouter);
 app.use("/materiais", materialRouter);
 app.use("/tecidos-para-lencol", tecidoParaLencolRouter);
-app.use("/usuarios", usuarioRouter);
-// app.use("/usuarios", usuarioRouter);
 app.post("/register", register);
 app.post("/login", login);
 
 app.get("/", (req, res) => {
-  res.send("Hello, TypeScript + Express!");
+  res.send("Inphantil Moveis");
 });
 
 const dbUser = process.env.DB_USER;
