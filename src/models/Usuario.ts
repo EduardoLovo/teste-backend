@@ -1,18 +1,13 @@
-// const mongoose = require("mongoose");
 import mongoose, { Document, Schema } from "mongoose";
 
-interface IUsuario extends Document {
-  usuario: string;
-  senha: string;
-  tipo: string;
+export interface IUser extends Document {
+  username: string;
+  password: string;
 }
 
-const UsuarioSchema = new Schema<IUsuario>({
-  usuario: String,
-  senha: String,
-  tipo: String,
+const userSchema = new Schema<IUser>({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
 });
 
-const Usuario = mongoose.model<IUsuario>("Usuario", UsuarioSchema);
-
-export default Usuario;
+export const UserModel = mongoose.model<IUser>("User", userSchema);
